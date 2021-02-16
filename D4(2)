@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<vector<int>> res1;
+        cout<<n<<endl;
+        if(nums.size()<4)
+            return res1;
+        int left,right;
+        sort(nums.begin(),nums.end());
+        for(int i =0 ;i<n;i++)
+        {
+            for(int j = i+1;j<n;j++)
+            {
+                left = j+1;
+                    right = n-1;
+                while(left<right)
+                {
+                    int two_sum = nums[left]+nums[right];
+                    
+                    if(target-nums[i]-nums[j]>two_sum)
+                        left++;
+                    else if(target-nums[i]-nums[j]<two_sum)
+                        right--;
+                    else{
+                        vector<int> res(4);
+                        int left_ele = nums[left];
+                        int right_ele = nums[right];
+                        res[0] = nums[i];
+                        res[1] = nums[j];
+                        res[2] = left_ele;
+                        res[3] = right_ele;
+                        res1.push_back(res);
+                        
+                        //to move the left pointer
+                        while(nums[left] == left_ele && left<right) left++;
+                        //to jump the right pointer
+                        while(nums[right] == right_ele && left<right) right--;
+                    }
+                    //to jump j pointer
+                    while(nums[j+1] == nums[j] && j+1<n) j++;
+                    
+                }
+                //to jump i pointer
+               while(nums[i+1] == nums[i] && i+1<n) i++;
+            }
+        }
+        return res1;
+    }
+};
