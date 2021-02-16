@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+#include<string.h>
+using namespace std;
+int main()
+{
+    string s = "bbbbb";
+    set<char> st;
+    int l=0,r=0,max_len=0;
+            while(l<s.length() && r<s.length())
+            {
+                if(!st.count(s[r]))
+                {
+                    st.insert(s[r]);
+                    max_len = max(max_len,r-l+1);
+                    r++;
+                }
+                else{
+                    st.erase(s[l++]);
+                    
+                }
+            }
+        for(auto it:st)
+        {
+            cout<<it<<endl;
+        }
+        cout<<max_len<<endl;
+}
