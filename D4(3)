@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int cnt=1;
+        if(nums.empty())
+            return 0;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i+1] == nums[i]+1)
+                cnt++;
+        }
+        return cnt;
+    }
+};
+
+//hashset
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        set<int> hashset;
+        int max_cnt=0;
+        if(nums.empty()) return 0;
+        for(auto it : nums)
+        {
+            hashset.insert(it);
+        }
+        for(auto it : nums)
+        {
+            if(!hashset.count(it-1))  //number does not exists
+            {
+                int cur_num = it;int cnt=1;
+                   while(hashset.count(cur_num+1))
+                   {
+                       cur_num+=1;
+                       cnt +=1;
+                   }
+                max_cnt = max(max_cnt,cnt);
+            }
+        }
+        return max_cnt;
+    }
+};
