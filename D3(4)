@@ -33,4 +33,4 @@ public:
             res.emplace_back(num2);
         return res;
     }
-};
+}
