@@ -1,4 +1,4 @@
-# CPP
+# DSA
 ---
 ### Main Area of study
 #### Array
